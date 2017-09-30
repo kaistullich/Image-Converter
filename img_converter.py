@@ -143,4 +143,4 @@ if __name__ == '__main__':
                   )
     )
     app.logger.addHandler(file_handler)
-    app.run(debug=True)
+    app.run()
