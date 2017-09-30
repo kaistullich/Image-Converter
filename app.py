@@ -1,3 +1,5 @@
+# ./app.py
+
 import logging
 import os
 from datetime import datetime
@@ -86,7 +88,7 @@ def upload_file():
             # convert the image to greyscale
             convert_success = convert_to_grey(filename)
             if convert_success:
-                return redirect(url_for('uploaded_file', filename=filename))
+                return redirect(url_for('uploaded_file', img_name=filename))
             else:
                 return render_template('error.html')
     return render_template('index.html')
