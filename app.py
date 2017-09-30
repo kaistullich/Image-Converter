@@ -31,6 +31,15 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = os.urandom(24)
 
+file_handler = FileHandler('error_log.log')
+file_handler.setLevel(logging.ERROR)
+file_handler.setFormatter(
+    Formatter('%(asctime)s,%(msecs)d %(levelname)-5s [%(filename)s:%(lineno)d] %(message)s',
+              datefmt='%d-%m-%Y:%H:%M:%S'
+              )
+)
+app.logger.addHandler(file_handler)
+
 
 def allowed_file(filename):
     """
@@ -137,12 +146,4 @@ def delete_old_images():
 
 
 if __name__ == '__main__':
-    file_handler = FileHandler('error_log.log')
-    file_handler.setLevel(logging.ERROR)
-    file_handler.setFormatter(
-        Formatter('%(asctime)s,%(msecs)d %(levelname)-5s [%(filename)s:%(lineno)d] %(message)s',
-                  datefmt='%d-%m-%Y:%H:%M:%S'
-                  )
-    )
-    app.logger.addHandler(file_handler)
-    app.run()
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
