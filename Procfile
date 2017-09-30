@@ -1,1 +1,1 @@
-web: gunicorn app:img_converter
+web: gunicorn app:app
