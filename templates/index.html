@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Image Greyscale Converter</h1>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+{% endblock %}
